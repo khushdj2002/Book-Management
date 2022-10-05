@@ -2,6 +2,8 @@ const { request, response } = require("express");
 const express = require("express");
 
 const app = express();
+//json import
+const {books}= require("./data/users.json");
 
 const PORT =8081;
 
@@ -12,6 +14,20 @@ app.get("/",(request,response)=>{
         message:"Server is up and running",
     });
 });
+/**
+ * Route: /users
+ * Method: GET
+ * Description: public
+ * Parameters: None
+ */
+
+app.get("/users",(request,response)=>{
+    response.status(200).json({
+        success: true,
+        data :users,
+    });
+});
+
 
 app.get("*",(request,response)=>{
     response.status(404).json({
