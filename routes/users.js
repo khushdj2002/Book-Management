@@ -1,27 +1,9 @@
-const { request, response } = require("express");
 const express = require("express");
 
-const app = express();
-//json import
-const {users}= require("./data/users.json");
-// importing routes
-const userRouter = require("./routes/users");
-const booksRouter = require("./routes/books");
 
+const {users}=require("../data/users.json");
 
-const PORT =8081;
-
-app.use(express.json());
-
-app.get("/",(request,response)=>{
-    response.status(200).json({
-        message:"Server is up and running",
-    });
-});
-
-app.use("/users",userRouter);
-app.use("/books",userRouter);
-
+const router  = express.Router();
 
 
 /**
@@ -31,7 +13,7 @@ app.use("/books",userRouter);
  * Parameters: None
  */
 
-app.get("/users",(request,response)=>{
+ router.get("/",(request,response)=>{
     response.status(200).json({
         success: true,
         message:"Running",
@@ -47,7 +29,7 @@ app.get("/users",(request,response)=>{
  * Parameters: id
  */
 
-app.get("/users/:id",(request,response)=>{
+router.get("/:id",(request,response)=>{
     const {id} =request.params;
     const user = users.find((each)=> each.id===id);
     if(!user){
@@ -70,7 +52,7 @@ app.get("/users/:id",(request,response)=>{
  * Parameters: none
  */
 
-app.post("/users",(request,response)=>{
+router.post("/",(request,response)=>{
     const {id, name, surname, email, subscriptionType, subscriptionDate }=
     request.body;
 
@@ -105,7 +87,7 @@ app.post("/users",(request,response)=>{
  * Parameters: id
  */
 
-app.put("/users/:id",(request,response)=>{
+router.put("/:id",(request,response)=>{
 
     const {id} = request.params;
     const {data} = request.body;
@@ -142,7 +124,7 @@ app.put("/users/:id",(request,response)=>{
  * parameters:id
  */
 
-app.delete("/users/:id",(request,response)=>{
+router.delete("/:id",(request,response)=>{
     const {id} = request.params;
     const user = users.find((each)=> each.id === id);
 
@@ -163,15 +145,4 @@ app.delete("/users/:id",(request,response)=>{
     
 });
 
-
-
-
-app.get("*",(request,response)=>{
-    response.status(404).json({
-        message: "This route does not exist"
-    });
-});
-
-app.listen(PORT,()=>{
-    console.log(`Server is running at port ${PORT}`);
-});
+module.exports = router;
