@@ -16,7 +16,7 @@ const router  = express.Router();
  router.get("/",(request,response)=>{
     response.status(200).json({
         success: true,
-        message:"Running",
+        message:"Running Server",
         data :users,
     });
 });

@@ -31,7 +31,7 @@ GET: Get a book by id
 PUT: Update a book by id
 
 
-## /books/issued
+## /books/issued/books
 GET: Get all issued books
 
 

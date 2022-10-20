@@ -1,13 +1,14 @@
 const { request, response } = require("express");
 const express = require("express");
 
-const app = express();
+
 //json import
-const {users}= require("./data/users.json");
+//const {users}= require("./data/users.json");
 // importing routes
-const userRouter = require("./routes/users");
+const usersRouter = require("./routes/users");
 const booksRouter = require("./routes/books");
 
+const app = express();
 
 const PORT =8081;
 
@@ -19,8 +20,8 @@ app.get("/",(request,response)=>{
     });
 });
 
-app.use("/users",userRouter);
-app.use("/books",userRouter);
+app.use("/users",usersRouter);
+app.use("/books",booksRouter);
 
 
 
