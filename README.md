@@ -45,6 +45,8 @@ Basic (3 months)
 Standard (6 months)
 Premium (12 months)
 
+Date is in format (mm/dd/yyyy)
+
 If the subscription dateis 01/08/2022
 and Subscriptiontype is Standard
 the vslid till data will be 01/02/23
